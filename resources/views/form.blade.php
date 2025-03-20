@@ -8,7 +8,7 @@
     </div>
     <div class="card">
         <div class="card-body">
-            <form method="post" action="" enctype="multipart/form-data">
+            <form method="post" action="{{route('veiculos.store')}}" enctype="multipart/form-data">
                 {!!csrf_field()!!}
                 <div class="row">
                     <div class="form-group col-sm-12 col-md-6 mb-3">

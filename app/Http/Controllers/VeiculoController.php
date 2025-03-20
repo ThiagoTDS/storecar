@@ -2,9 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\VeiculoRequest;
 use Illuminate\Contracts\View\View;
-use Illuminate\Http\Request;
-
 
 class VeiculoController extends Controller
 {
@@ -14,8 +13,18 @@ class VeiculoController extends Controller
         return view('index');
     }
 
+
+    
     public function create ():View
     {
         return view('form');
     }
+
+    public function store(VeiculoRequest $request){
+       $data = $request->validated();
+        dd('aqui', $data);
+    }
+
+
+    
 }

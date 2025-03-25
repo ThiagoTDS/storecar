@@ -9,7 +9,7 @@
     <div class="card">
         <div class="card-body">
             <form method="post" action="{{route('veiculos.store')}}" enctype="multipart/form-data">
-                {!!csrf_field()!!}
+                @csrf
                 <div class="row">
                     <div class="form-group col-sm-12 col-md-6 mb-3">
                         <label for="name">Nome</label>
@@ -58,7 +58,7 @@
                         class="form-control"
                         id="kilometers" 
                         name="kilometers"
-                        value="{{isset($item) ? $item->kilometers: old('kilometers') }}"
+                        value="{{isset($item) ? $item->kilometers : old('kilometers') }}"
                         type="text"
                         autocomplete="off">
                         @error('kilometers')
@@ -84,11 +84,11 @@
                         <label for="type">Tipo de veículo</label>
                         <select class="form-select" name="type" id="type">
                             <option value="">Selecione uma opção</option>
-                            <option value=""
-                            @if(isset($item)&& $item->type == "Novo" || isset($item) && $item->type == old('type')) selected @endif
+                            <option value="Novo"
+                            @if(isset($item) && $item->type == "Novo" || isset($item) && $item->type == old('type')) selected @endif
                             >Novo</option>
-                            <option value=""
-                            @if(isset($item)&& $item->type == "Usado" || isset($item) && $item->type == old('type')) selected @endif
+                            <option value="Usado"
+                            @if(isset($item) && $item->type == "Usado" || isset($item) && $item->type == old('type')) selected @endif
                             >Usado</option>
                         </select>
                     </div>
@@ -178,7 +178,7 @@
                         @enderror
                     </div>
                 </div>
-                <button class="btn btn-success">Salvar</button>
+                <button class="btn btn-success"><i class="fas fa-save icon-font-awesome"></i>Salvar</button>
             </form>
         </div>
     </div>

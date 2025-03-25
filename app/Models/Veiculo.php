@@ -16,7 +16,7 @@ class Veiculo extends Model
         'kilometers',
         'city',
         'type',
-        'pryce',
+        'price',
         'image',
         'description',
         'contact_name',

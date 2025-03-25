@@ -6,11 +6,7 @@
         <h3>Lista de veículos</h3>
     </div>
     <div class="row">
-        <div class="col-3">
-
-
-
-        </div>
+        <div class="col-3"></div>
         <div class="card-body mb-3">
             <form method="GET" action="{{ route('home') }}">
                 <div class="row g-3">
@@ -57,7 +53,12 @@
                 </div>
             </form>
         </div>
-    </div>    
+    </div>
+    @if(session('message')) 
+        <div class="alert alert-success w-100">
+            {{session('message')}}
+        </div>
+    @endif
     <div class="row justify-content-center">
        <div class="col-9">
             <div class="card mb-3">

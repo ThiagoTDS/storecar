@@ -91,7 +91,7 @@
                             @if(isset($item) && $item->type == "Usado" || isset($item) && $item->type == old('type')) selected @endif
                             >Usado</option>
                         </select>
-                    </div>
+                     </div>
                 </div>
                 <div class="row">
                     <div class="form-group col-sm-12 col-md-4 mb-3">

@@ -41,33 +41,33 @@ class VeiculoRequest extends FormRequest
     public function messages(): array
     {
         return[
-            'name.required' => 'Nome do veículo é obrigatório',
-            'brand.required' => 'Marca do veículo é obrigatória',
+            'name.required'         => 'Nome do veículo é obrigatório',
+            'brand.required'        => 'Marca do veículo é obrigatória',
             
-            'veiculo_ano.required' => 'Ano do veículo obrigatório',
-            'veiculo_ano.integer' => 'Ano do veículo deve ser numérico',
+            'veiculo_ano.required'  => 'Ano do veículo obrigatório',
+            'veiculo_ano.integer'   => 'Ano do veículo deve ser numérico',
 
-            'kilometers.required' => 'Kilometragem do veículo obrigatória',
-            'kilometers.integer' => 'Kilometragem do veículo deve ser numérico',
+            'kilometers.required'   => 'Kilometragem do veículo obrigatória',
+            'kilometers.integer'    => 'Kilometragem do veículo deve ser numérico',
 
-            'city.required' => 'Cidade do veículo é obrigatória',
-            'type.required' => 'Tipo do veículo é obrigatório',
+            'city.required'         => 'Cidade do veículo é obrigatória',
+            'type.required'         => 'Tipo do veículo é obrigatório',
 
-            'price.required' => 'Preço do veículo obrigatório',
-            'price.integer' => 'Preço do veículo deve ser numérico',
+            'price.required'        => 'Preço do veículo obrigatório',
+            'price.integer'         => 'Preço do veículo deve ser numérico',
 
-            'image'=> 'nullable',
+            'image'                 => 'nullable',
             
-            'description'=>'nullable',
+            'description'           =>'nullable',
 
             'contact_name.required' =>'Nome do vendedor obrigatório',
-            'contact_name.string' =>'Campo tipo texto',
-            'contact_name.min'=>'Campo deve ter no mínimo 3 caracteres',
+            'contact_name.string'   =>'Campo tipo texto',
+            'contact_name.min'      =>'Campo deve ter no mínimo 3 caracteres',
 
-            'contact_phone.required' =>'Telefone do vendedor obrigatório',
+            'contact_phone.required'=>'Telefone do vendedor obrigatório',
             
             'contact_mail.required' =>'Email do vendedor obrigatório',
-            'contact_mail.email' => 'Precisa ser um email válido',
+            'contact_mail.email'    => 'Precisa ser um email válido',
         ];
     }
 }

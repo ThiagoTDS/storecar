@@ -31,7 +31,15 @@ class VeiculoController extends Controller
         $data = $request->validated();
     
         $insert = $this->veiculoRepository->store($data);
-    
+        
+        if($request->file('image'))
+        {
+            $file = $request->file('image');
+            $filename = date('YmdHi').$file->getClientOriginalName();
+            $file->move(public_path('assets/images'), $filename);
+            $data ['image'] = $filename;
+        }
+        
         if(!$insert){
            return redirect()->back()->with('error', 'Erro ao cadastrar veículo'); 
         }

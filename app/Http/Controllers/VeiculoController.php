@@ -19,34 +19,35 @@ class VeiculoController extends Controller
     {
         return view('index');
     }
-
-
     
     public function create ():View
     {
         return view('form');
     }
 
+    public function index(): View
+    {
+        $perPage = 10;
+        $items = $this->veiculoRepository->paginate($perPage);
+        return view('home', compact('items'));
+    }
+
     public function store(VeiculoRequest $request){
         $data = $request->validated();
-    
-        $insert = $this->veiculoRepository->store($data);
-        
+
         if($request->file('image'))
         {
             $file = $request->file('image');
             $filename = date('YmdHi').$file->getClientOriginalName();
-            $file->move(public_path('assets/images'), $filename);
+            $file->move(public_path('/assets/images'), $filename);
             $data ['image'] = $filename;
         }
         
+        $insert = $this->veiculoRepository->store($data);
         if(!$insert){
            return redirect()->back()->with('error', 'Erro ao cadastrar veículo'); 
         }
         
         return redirect()->route('home')->with('message','Veículo cadastrado com sucesso');
     }
-
-
-    
 }

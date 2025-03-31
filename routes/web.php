@@ -10,4 +10,4 @@ Route::get('/veiculo/create',[VeiculoController::class, 'create'])->name("veicul
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [VeiculoController::class, 'index'])->name('home');

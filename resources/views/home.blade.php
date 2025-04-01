@@ -65,7 +65,7 @@
             <div class="card mb-3">
                 <div class="row g-0">
                     <div class="col-md-4">
-                       <img class="img-fluid rounded-start" src="{{ asset('assets/images/' . $item->image) }}" alt="img">
+                       <img class="img-fluid rounded-start" src="{{ asset('assets/images/' . $item->image) }}" alt="img" width="180px" height="200px">
                     </div>
                     <div class="col-md-8">
                         <div class="card-body">
@@ -73,7 +73,7 @@
                             <p class="card-text text-secondary mb-2">{{$item->description}}</p>
                             <h5>{{$item->price}}</h5>
                             <div class="actions">
-                                <a href="#" class="btn btn-primary">Editar</a>
+                                <a href="{{route('veiculo.edit',$item->id)}}" class="btn btn-primary">Editar</a>
                                 <button class="btn btn-primary">Excluir</button>
                             </div>
                         </div>

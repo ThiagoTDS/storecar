@@ -8,8 +8,16 @@
     </div>
     <div class="card">
         <div class="card-body">
-            <form method="post" action="{{route('veiculos.store')}}" enctype="multipart/form-data">
-                @csrf
+
+            <form method="POST" enctype="multipart/form-data"
+                @if (isset($item)) 
+                action="{{ route('veiculo.update', $item->id)}}"
+             @method('PUT')
+                @else
+                    action="{{ route('veiculo.store')}}">
+                @endif
+                {!! @csrf_field() !!}
+            
                 <div class="row">
                     <div class="form-group col-sm-12 col-md-6 mb-3">
                         <label for="name">Nome</label>

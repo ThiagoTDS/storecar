@@ -22,19 +22,19 @@
                         value="{{request()->filter['brand'] ?? ''}}">
                     </div>
                     <div class="mb-3 mx-3">
-                        <label for="veiculo_year" class="form-label">Ano do veículo</label>
+                        <label for="veiculo_ano" class="form-label">Ano do veículo</label>
                         <input 
                         type="range" 
                         class="form-control-range w-100" 
-                        id="veiculo_year" 
-                        name="filter[veiculo_year]" 
+                        id="veiculo_ano" 
+                        name="filter[veiculo_ano]" 
                         step="1"
-                        min="1990"
-                        max="2023"
-                        value="{{request()->filter['veiculo_year'] ?? '2023'}}"
-                        oninput="document.getElementById('yearsrange').innerText = document.getElementById('veiculo_year').value"
+                        min="1910"
+                        max="2025"
+                        value="{{request()->filter['veiculo_ano'] ?? '2023'}}"
+                        oninput="document.getElementById('yearsrange').innerText = document.getElementById('veiculo_ano').value"
                         ><br>
-                        Até <span id="yearsrange"> {{request()->filter['veiculo_year'] ?? '2023'}} </span>
+                        Até <span id="yearsrange"> {{request()->filter['veiculo_ano'] ?? '2025'}} </span>
                     </div>
                     <div class="mb-3 mx-3">
                         <label for="kilometers" class="form-label">KM</label>
@@ -97,20 +97,28 @@
         </div>
         <div class="col-9">
             <div class="row row-cols-1 row-cols-md-3 g-4">
-                <div class="col">
-                    <div class="card h-100">
-                        <img src="{{asset('assets/images/porsche.png')}}" class="card-img-top" alt="">
-                        <div class="card-body">
-                            <h5 class="card-title mb-2">Titulo</h5>
-                            <p class="card-text text-secondary mb-2">Subtitulos</p>
-                            <p class="card-text text-secondary mb-2">Subtitulos</p>
-                            <h5 class="mb-5">Preço</h5>
-                            <div class="actions">
-                                <button class="btn btn-primary">Entrar em contato</button>
+                @forelse($items as $item)
+                    <div class="col">
+                        <div class="card h-100">
+                            <img src="{{asset('assets/images/'.$item->image)}}" class="card-img-top" alt="card-img-top">
+                            <div class="card-body">
+                                <h5 class="card-title mb-2">{{$item->name}}</h5>
+                                <p class="card-text text-secondary mb-2">{{$item->description}}</p>
+                                <p class="card-text text-secondary mb-2">
+                                    Ano {{$item->veiculo_ano}} / KM {{$item->kilometers}} / {{$item->type}} / Cidade - {{$item->city}}</p>
+                                <h5 class="mb-5">{{$item->price}}</h5>
+                                <div class="actions">
+                                    <button class="btn btn-primary">Entrar em contato</button>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                @empty
+                    <div class="card text-center p-3 d-flex align-items-center w-100">
+                        <img src="{{asset('assets/images/encontrar.png')}}" alt="empty-state" width="300">
+                        <h4>Nenhum Veículo Encontrado</h4>
+                    </div>
+                @endempty
             </div>
         </div>
     </div>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\VeiculoRequest;
 use App\Repositories\VeiculoRepository;
 use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
 
 class VeiculoController extends Controller
 {
@@ -17,7 +18,9 @@ class VeiculoController extends Controller
 
     public function listaVeiculos(): View
     {
-        return view('index');
+        $perPage = 6;
+        $items = $this->veiculoRepository->paginate($perPage);
+        return view('index', compact('items'));
     }
 
     public function create(): View
@@ -59,7 +62,7 @@ class VeiculoController extends Controller
         return view('form', compact('item'));
     }
 
-    public function update(VeiculoRequest $request, int $id)
+    public function update(VeiculoRequest $request, int $id):RedirectResponse
     {
         try 
         {
@@ -83,5 +86,15 @@ class VeiculoController extends Controller
             return redirect()->back()
             ->with('error', 'Erro: ' . $e->getMessage());
         }
+    }
+    
+    public function destroy(int $id):RedirectResponse
+    {
+        $delete = $this->veiculoRepository->delete($id);
+        
+        if(!$delete){
+            return redirect()->back()->with('error','Erro ao excluir o veículo');
+        }
+        return  redirect()->route('home')->with('message','Veículo excluido com sucesso');
     }
 }

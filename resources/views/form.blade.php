@@ -11,8 +11,8 @@
 
             <form method="POST" enctype="multipart/form-data"
                 @if (isset($item)) 
-                action="{{ route('veiculo.update', $item->id)}}"
-             @method('PUT')
+                    action="{{ route('veiculo.update', $item->id)}}"
+                    @method('PUT')
                 @else
                     action="{{ route('veiculo.store')}}">
                 @endif

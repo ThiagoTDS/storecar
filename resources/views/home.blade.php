@@ -74,7 +74,12 @@
                             <h5>{{$item->price}}</h5>
                             <div class="actions">
                                 <a href="{{route('veiculo.edit',$item->id)}}" class="btn btn-primary">Editar</a>
-                                <button class="btn btn-primary">Excluir</button>
+
+                                <form method="POST" action="{{route('veiculo.delete', $item->id)}}" class="d-inline ml-2">
+                                    @method('DELETE')
+                                    @csrf
+                                    <button class="btn btn-primary">Excluir</button>
+                                </form>
                             </div>
                         </div>
                     </div>

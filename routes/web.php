@@ -9,7 +9,7 @@ Route::get('/', [VeiculoController::class, 'listaVeiculos'])->name("veiculos.lis
 Route::get('/veiculo/create', [VeiculoController::class, 'create'])->name("veiculos.create");
 Route::get('/veiculo/edit/{id}', [VeiculoController::class, 'edit'])->name("veiculo.edit");
 Route::post('/veiculo', [VeiculoController::class, 'store'])->name('veiculo.store');
-Route::post('/veiculo/{id}', [VeiculoController::class, 'update'])->name('veiculo.update');
+Route::put('/veiculo/{id}', [VeiculoController::class, 'update'])->name('veiculo.update');
 Route::delete('/veiculo/{id}', [VeiculoController::class, 'destroy'])->name('veiculo.delete');
 
 Auth::routes();

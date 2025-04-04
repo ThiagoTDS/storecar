@@ -15,12 +15,13 @@
                         <label class="form-label" for="brand">Marca</label>
                         <input 
                         type="text" 
-                        class="form-control" 
+                        class="form-control form-control-sm" 
                         id="brand" 
                         name="filter[brand]" 
                         autocomplete="off" 
-                        value="{{request()->filter['brand'] ?? ''}}">
+                       value="{{ request()->filter['brand'] ?? ''}}">
                     </div>
+
                     <div class="mb-3 mx-3">
                         <label for="veiculo_ano" class="form-label">Ano do veículo</label>
                         <input 
@@ -31,7 +32,7 @@
                         step="1"
                         min="1910"
                         max="2025"
-                        value="{{request()->filter['veiculo_ano'] ?? '2023'}}"
+                        value="{{request()->filter['veiculo_ano'] ?? '2025'}}"
                         oninput="document.getElementById('yearsrange').innerText = document.getElementById('veiculo_ano').value"
                         ><br>
                         Até <span id="yearsrange"> {{request()->filter['veiculo_ano'] ?? '2025'}} </span>
@@ -67,7 +68,7 @@
                         Até <span id="pricerange"> {{request()->filter['price'] ?? '200000'}} </span>
                     </div>
                     <div class="mb-3 mx-3">
-                        <label class="form-label" for="type">Tipo de veículo</label>
+                        <label class="form-label" for="type">Cidade</label>
                         <input 
                         type="text" 
                         class="form-control" 
@@ -77,7 +78,7 @@
                         value="{{request()->filter['city'] ?? ''}}">
                     </div>
                     <div class="mb-3 mx-3">
-                        <label class="form-label" for="city">Cidade</label>
+                        <label class="form-label" for="city">Tipo de veículo</label>
                         <select class="form-select" name="filter[type]" id="type">
                             <option value="">Selecione uma opção</option>
                             <option value=""
@@ -105,10 +106,33 @@
                                 <h5 class="card-title mb-2">{{$item->name}}</h5>
                                 <p class="card-text text-secondary mb-2">{{$item->description}}</p>
                                 <p class="card-text text-secondary mb-2">
-                                    Ano {{$item->veiculo_ano}} / KM {{$item->kilometers}} / {{$item->type}} / Cidade - {{$item->city}}</p>
+                                  Marca: {{$item->brand}} /  Ano: {{$item->veiculo_ano}} / KM: {{$item->kilometers}} / {{$item->type}} / Cidade - {{$item->city}}</p>
                                 <h5 class="mb-5">{{$item->price}}</h5>
                                 <div class="actions">
-                                    <button class="btn btn-primary">Entrar em contato</button>
+                                    <button 
+                                        class="btn btn-primary"
+                                        data-bs-toggle="modal"
+                                        data-bs-target="#contactModal_{{$item->id}}"
+                                        >Entrar em contato</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="modal fade" id="contactModal_{{$item->id}}" tabindex="-1" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h1 class="modal-title fs-5">Contato do vendedor</h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <span><strong>Nome:</strong> {{$item->contact_name}}</span><br>
+                                    <span><strong>Telefone:</strong> {{$item->contact_phone}}</span><br>
+                                    <span><strong>E-mail:</strong> {{$item->contact_mail}}</span><br>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Fechar</button>
                                 </div>
                             </div>
                         </div>

@@ -11,7 +11,7 @@
 
             <form method="POST" enctype="multipart/form-data"
                 @if (isset($item)) 
-                    action="{{ route('veiculo.update', $item->id)}}"
+                    action="{{ route('veiculo.update', $item->id)}}">
                     @method('PUT')
                 @else
                     action="{{ route('veiculo.store')}}">
@@ -186,7 +186,7 @@
                         @enderror
                     </div>
                 </div>
-                <button class="btn btn-success"><i class="fas fa-save icon-font-awesome"></i>Salvar</button>
+                <button class="btn btn-success bg-primary border-0"><i class="fas fa-save icon-font-awesome"></i>Salvar</button>
             </form>
         </div>
     </div>

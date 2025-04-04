@@ -20,6 +20,7 @@ class VeiculoController extends Controller
     {
         $perPage = 6;
         $items = $this->veiculoRepository->paginate($perPage);
+      
         return view('index', compact('items'));
     }
 
@@ -55,46 +56,42 @@ class VeiculoController extends Controller
         return redirect()->route('home')->with('message', 'Veículo cadastrado com sucesso');
     }
 
-    public function edit($id)
+    public function edit(int $id)
     {
         $item = $this->veiculoRepository->findById($id);
 
         return view('form', compact('item'));
     }
 
-    public function update(VeiculoRequest $request, int $id):RedirectResponse
+    public function update(VeiculoRequest $request, int $id): RedirectResponse
     {
-        try 
-        {
-            $data = $request->validated();
+        $data = $request->validated();
 
-            if ($request->file('image')) {
-                $file = $request->file('image');
-                $filename = date('YmdHi') . $file->getClientOriginalName();
-                $file->move(public_path('/assets/images'), $filename);
-                $data['image'] = $filename;
-            }
-
-            $insert = $this->veiculoRepository->update($id, $data);
-            
-            if (!$insert) {
-                return redirect()->back()->with('error', 'Erro ao atualizar veículo');
-            }
-
-            return redirect()->route('home')->with('message', 'Veículo atualizado com sucesso');
-        } catch (\Exception $e) {
-            return redirect()->back()
-            ->with('error', 'Erro: ' . $e->getMessage());
+        if ($request->file('image')) {
+            $file = $request->file('image');
+            $filename = date('YmdHi') . $file->getClientOriginalName();
+            $file->move(public_path('/assets/images'), $filename);
+            $data['image'] = $filename;
         }
+
+        $update = $this->veiculoRepository->update($id, $data);
+
+        if (!$update) {
+            return redirect()->back()->with('error', 'Erro ao atualizar veículo');
+        }
+
+        return redirect()->route('home')->with('message', 'Veículo atualizado com sucesso');
+        return redirect()->back()
+            ->with('error', 'Erro: ' . $e->getMessage());
     }
-    
-    public function destroy(int $id):RedirectResponse
+
+    public function destroy(int $id): RedirectResponse
     {
         $delete = $this->veiculoRepository->delete($id);
-        
-        if(!$delete){
-            return redirect()->back()->with('error','Erro ao excluir o veículo');
+
+        if (!$delete) {
+            return redirect()->back()->with('error', 'Erro ao excluir o veículo');
         }
-        return  redirect()->route('home')->with('message','Veículo excluido com sucesso');
+        return  redirect()->route('home')->with('message', 'Veículo excluido com sucesso');
     }
 }

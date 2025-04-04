@@ -7,8 +7,8 @@ use Spatie\QueryBuilder\Filters\Filter;
 
 class LowerThanFilter implements Filter
 {
-    public function __invoke(Builder $query, $value, string $propety)
+    public function __invoke(Builder $query, $value, string $property)
     {
-        $query->where($propety, '<=' , $value);
+        $query->where($property, '<=' , $value);
     }
 }
